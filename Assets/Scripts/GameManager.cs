@@ -13,9 +13,10 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public void GameOver()
+    public IEnumerator GameOver()
     {
-        Time.timeScale = 0f;
+        yield return new WaitForSeconds(0.9f);
+        Time.timeScale = 0f;        
         StopAllCoroutines();
         playing = false;
     }
@@ -31,4 +32,5 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
 }

@@ -10,6 +10,8 @@ public class PlayerScript : MonoBehaviour
     public int collisionCount = 0;
     public int deathCollisionThreshold = 3;
 
+    private Vector2 touchOrigin = -Vector2.one;
+
     protected void Start()
     {
         animator = GetComponent<Animator>();
@@ -25,10 +27,10 @@ public class PlayerScript : MonoBehaviour
 
         transform.position = transform.position + movement * speed * Time.deltaTime;
 
-        /*if (Input.GetKeyDown(KeyCode.W))
+        if (horizontalMovement != 0 || verticalMovement != 0)
         {
             animator.SetTrigger("PlayerRun");
-        }*/
+        }
 
     }
 
@@ -40,8 +42,9 @@ public class PlayerScript : MonoBehaviour
             collisionCount++;
             if (collisionCount >= deathCollisionThreshold)
             {
-                GameManager.instance.GameOver();
+                
                 animator.SetTrigger("PlayerDead");
+                StartCoroutine(GameManager.instance.GameOver());
             }
         }
     }
