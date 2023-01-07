@@ -11,6 +11,8 @@ public class FireballSpawner : MonoBehaviour
     public float minY;
     public float maxY;
 
+
+
     void Start()
     {
 
@@ -24,6 +26,7 @@ public class FireballSpawner : MonoBehaviour
         maxY = camera.transform.position.y + cameraHalfHeight;
 
         InvokeRepeating("SpawnFireball", 0, spawnInterval);
+
     }
 
     void SpawnFireball()
